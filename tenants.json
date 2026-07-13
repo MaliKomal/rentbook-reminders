@@ -1,0 +1,23 @@
+{
+  "tenants": [
+    {
+      "id": "T1",
+      "flat": "A-101",
+      "name": "Rohan Sharma",
+      "phone": "91XXXXXXXXXX",
+      "rent": 15000,
+      "dueDate": 5
+    },
+    {
+      "id": "T2",
+      "flat": "B-203",
+      "name": "Priya Patil",
+      "phone": "91XXXXXXXXXX",
+      "rent": 18000,
+      "dueDate": 10
+    }
+  ],
+  "payments": {
+    "T1_2026-07": "paid"
+  }
+}
