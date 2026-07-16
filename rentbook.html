@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RentBook Pro — Pune</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap');
+
+:root {
+  --bg: #F4F6FA;
+  --white: #FFFFFF;
+  --border: #E2E8F0;
+  --border2: #CBD5E1;
+  --ink: #0F172A;
+  --ink2: #475569;
+  --ink3: #94A3B8;
+  --accent: #2563EB;
+  --accent-bg: #EFF6FF;
+  --accent2: #7C3AED;
+  --green: #16A34A;
+  --green-bg: #DCFCE7;
+  --green-light: #BBF7D0;
+  --yellow: #B45309;
+  --yellow-bg: #FEF3C7;
+  --red: #DC2626;
+  --red-bg: #FEE2E2;
+  --red-light: #FECACA;
+  --orange: #C2410C;
+  --orange-bg: #FFF7ED;
+  --wa: #25D366;
+  --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;padding-bottom:80px}
+
+/* NAV TABS */
+.nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.nav-top{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 10px}
+.logo{display:flex;align-items:center;gap:9px}
+.logo-mark{width:34px;height:34px;background:var(--ink);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.logo-text{font-size:16px;font-weight:800;letter-spacing:-0.4px;line-height:1.1}
+.logo-sub{font-size:10px;color:var(--ink3);font-weight:500}
+.nav-btns{display:flex;gap:7px}
+.nav-btn{padding:7px 13px;border-radius:8px;border:none;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;transition:opacity .15s}
+.nav-btn:active{opacity:.8}
+.nb-dark{background:var(--ink);color:#fff}
+.nb-wa{background:var(--wa);color:#fff}
+.nb-ghost{background:var(--bg);color:var(--ink2);border:1.5px solid var(--border)}
+
+.tabs{display:flex;border-top:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:1;min-width:80px;padding:10px 4px 9px;text-align:center;font-size:11px;font-weight:700;color:var(--ink3);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-icon{display:block;font-size:16px;margin-bottom:2px}
+
+/* PAGES */
+.page{display:none}.page.active{display:block}
+
+/* MONTH PILLS */
+.month-row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:12px 16px 0}
+.month-row::-webkit-scrollbar{display:none}
+.mpill{flex-shrink:0;padding:5px 13px;border-radius:20px;border:1.5px solid var(--border2);background:var(--white);color:var(--ink2);font-size:12px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s}
+.mpill.active{background:var(--ink);border-color:var(--ink);color:#fff}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:12px 16px}
+.scard{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:11px 8px;text-align:center;box-shadow:var(--shadow)}
+.snum{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;line-height:1;margin-bottom:3px}
+.slbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3)}
+.scard.sp .snum{color:var(--green)}
+.scard.sn .snum{color:var(--yellow)}
+.scard.so .snum{color:var(--red)}
+.scard.sm .snum{font-size:13px;color:var(--accent)}
+
+/* SECTION HEAD */
+.sec-head{display:flex;align-items:center;justify-content:space-between;padding:8px 16px 10px}
+.sec-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3)}
+
+/* TENANT CARDS */
+.cards{display:flex;flex-direction:column;gap:8px;padding:0 16px}
+.tcard{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:14px;box-shadow:var(--shadow)}
+.tc-r1{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:9px}
+.tc-flat{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;background:var(--accent-bg);color:var(--accent);padding:3px 8px;border-radius:6px}
+.tc-name{font-size:15px;font-weight:700;margin-top:5px;letter-spacing:-.2px}
+.tc-note{font-size:11px;color:var(--ink3);margin-top:2px}
+.tc-rent{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;color:var(--ink);text-align:right}
+.tc-rlbl{font-size:10px;color:var(--ink3);text-align:right;margin-top:1px}
+.tc-r2{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;align-items:center}
+.chip{font-size:11px;font-weight:600;color:var(--ink2);display:flex;align-items:center;gap:3px}
+.chip-sep{width:3px;height:3px;border-radius:50%;background:var(--border2);display:inline-block}
+.chip.warn{color:var(--red)}
+.chip.soon{color:var(--yellow)}
+.chip.ok{color:var(--green)}
+.tc-r3{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sbadge{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:'Plus Jakarta Sans',sans-serif;transition:transform .1s}
+.sbadge:active{transform:scale(.95)}
+.sbadge.paid{background:var(--green-bg);color:var(--green)}
+.sbadge.pending{background:var(--yellow-bg);color:var(--yellow)}
+.sbadge.overdue{background:var(--red-bg);color:var(--red)}
+.tc-btns{display:flex;gap:6px}
+.ibtn{width:36px;height:36px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all .15s;flex-shrink:0}
+.ibtn:active{transform:scale(.9)}
+.ibtn.wa{background:var(--green-bg);border-color:var(--green-light)}
+.ibtn.del{background:var(--red-bg);border-color:var(--red-light)}
+
+/* ALERTS BANNER */
+.alerts-box{margin:10px 16px 0;border-radius:12px;overflow:hidden}
+.alert-item{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid rgba(0,0,0,.05)}
+.alert-item:last-child{border-bottom:none}
+.alert-item.alert-red{background:var(--red-bg)}
+.alert-item.alert-orange{background:var(--orange-bg)}
+.alert-item.alert-yellow{background:var(--yellow-bg)}
+.alert-icon{font-size:20px;flex-shrink:0}
+.alert-txt strong{font-size:13px;font-weight:700;display:block}
+.alert-txt span{font-size:11px;color:var(--ink2)}
+
+/* HISTORY GRID */
+.hgrid-wrap{padding:0 16px;overflow-x:auto}
+.hgrid{min-width:600px;background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.hgrid table{width:100%;border-collapse:collapse;font-size:11px}
+.hgrid th{background:var(--bg);padding:9px 10px;text-align:center;font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border)}
+.hgrid th.left{text-align:left}
+.hgrid td{padding:10px;text-align:center;border-bottom:1px solid var(--border);vertical-align:middle}
+.hgrid tr:last-child td{border-bottom:none}
+.hgrid td.left{text-align:left;font-weight:700}
+.hcell{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:6px;font-size:11px;font-weight:700}
+.hcell.paid{background:var(--green-bg);color:var(--green)}
+.hcell.late{background:var(--red-bg);color:var(--red)}
+.hcell.miss{background:var(--border);color:var(--ink3)}
+.hcell.future{background:var(--bg);color:var(--border2)}
+
+/* EXPENSE TAB */
+.exp-summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding:12px 16px}
+.exp-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center;box-shadow:var(--shadow)}
+.exp-num{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500;margin-bottom:3px}
+.exp-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3)}
+.exp-card.income .exp-num{color:var(--green)}
+.exp-card.expense .exp-num{color:var(--red)}
+.exp-card.net .exp-num{color:var(--accent)}
+
+.exp-list{display:flex;flex-direction:column;gap:8px;padding:0 16px}
+.exp-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:13px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:var(--shadow)}
+.exp-left .exp-cat{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);margin-bottom:3px}
+.exp-left .exp-desc{font-size:14px;font-weight:700}
+.exp-left .exp-date{font-size:11px;color:var(--ink3);margin-top:2px}
+.exp-right{text-align:right;flex-shrink:0}
+.exp-amount{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500}
+.exp-amount.income{color:var(--green)}
+.exp-amount.expense{color:var(--red)}
+.exp-del{background:none;border:none;cursor:pointer;font-size:14px;color:var(--ink3);padding:4px;margin-top:4px;display:block;margin-left:auto}
+
+/* BACKUP TAB */
+.backup-section{padding:16px}
+.backup-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:12px;box-shadow:var(--shadow)}
+.backup-card h3{font-size:15px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.backup-card p{font-size:13px;color:var(--ink2);line-height:1.5;margin-bottom:14px}
+.backup-btn{width:100%;padding:13px;border-radius:12px;border:none;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;transition:opacity .15s}
+.backup-btn:active{opacity:.85}
+.bb-green{background:var(--green);color:#fff}
+.bb-blue{background:var(--accent);color:#fff}
+.bb-ghost{background:var(--bg);color:var(--ink2);border:1.5px solid var(--border)}
+.backup-info{font-size:11px;color:var(--ink3);text-align:center;margin-top:6px}
+.gdrive-status{font-size:12px;font-weight:600;padding:8px 14px;border-radius:8px;margin-bottom:12px;text-align:center}
+.gdrive-status.connected{background:var(--green-bg);color:var(--green)}
+.gdrive-status.disconnected{background:var(--yellow-bg);color:var(--yellow)}
+
+/* BOTTOM BAR */
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom));display:flex;gap:10px;z-index:50}
+.bfull{flex:1;padding:13px;border-radius:12px;border:none;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .15s}
+.bfull:active{transform:scale(.97)}
+.bfull.add{background:var(--ink);color:#fff}
+.bfull.wa{background:var(--wa);color:#fff}
+.bfull.exp{background:var(--accent2);color:#fff}
+
+/* MODALS / SHEETS */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;z-index:100;padding:0}
+.sheet{background:var(--white);border-radius:20px 20px 0 0;width:100%;max-height:93vh;overflow-y:auto;padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+.sheet-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:12px auto 16px}
+.sheet-hdr{padding:0 20px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.sheet-title{font-size:17px;font-weight:800;letter-spacing:-.3px}
+.close-x{width:30px;height:30px;border-radius:50%;background:var(--bg);border:none;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink3)}
+.sheet-body{padding:18px 20px}
+.field{margin-bottom:13px}
+.field label{display:block;font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:11px 13px;color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:500;transition:border-color .15s;-webkit-appearance:none}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);background:#fff}
+.field textarea{resize:vertical;min-height:70px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sheet-foot{padding:0 20px;display:flex;gap:10px;margin-top:4px}
+.btn{flex:1;padding:13px;border-radius:12px;border:1.5px solid var(--border);background:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;color:var(--ink2);transition:opacity .15s}
+.btn:active{opacity:.8}
+.btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn.wa-btn{background:var(--wa);color:#fff;border-color:var(--wa)}
+.btn.green{background:var(--green);color:#fff;border-color:var(--green)}
+
+/* RECEIPT PREVIEW */
+.receipt{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:14px;font-size:13px;line-height:1.7}
+.receipt-hdr{text-align:center;border-bottom:1px dashed var(--border2);padding-bottom:12px;margin-bottom:12px}
+.receipt-hdr .rtitle{font-size:17px;font-weight:800;letter-spacing:-.3px}
+.receipt-hdr .rsub{font-size:11px;color:var(--ink3)}
+.receipt-row{display:flex;justify-content:space-between;gap:8px}
+.receipt-row .rlbl{color:var(--ink3)}
+.receipt-row .rval{font-weight:700}
+.receipt-foot{border-top:1px dashed var(--border2);padding-top:10px;margin-top:10px;text-align:center;font-size:11px;color:var(--ink3)}
+
+/* EMPTY STATE */
+.empty{text-align:center;padding:50px 20px;color:var(--ink3)}
+.empty .ei{font-size:44px;margin-bottom:10px;display:block}
+.empty h3{font-size:15px;font-weight:700;color:var(--ink2);margin-bottom:5px}
+.empty p{font-size:13px;line-height:1.5}
+
+/* REMIND LIST */
+.rcard{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px;background:var(--bg);border-radius:12px;margin-bottom:8px}
+.rcard strong{font-size:14px;font-weight:700;display:block}
+.rcard span{font-size:12px;color:var(--ink3);margin-top:2px;display:block}
+.wa-sm{background:var(--wa);color:#fff;border:none;padding:9px 14px;border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.wa-sm:active{opacity:.85}
+
+/* TOAST */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 20px;border-radius:24px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:opacity .2s;pointer-events:none;white-space:nowrap;box-shadow:var(--shadow-md)}
+.toast.show{opacity:1}
+
+/* DESKTOP */
+@media(min-width:640px){
+  body{padding-bottom:0}
+  .bottom-bar{display:none}
+  .nav-top{padding:14px 28px 12px}
+  .month-row{padding:14px 28px 0}
+  .stats{padding:16px 28px;gap:12px}
+  .snum{font-size:26px}
+  .scard.sm .snum{font-size:16px}
+  .sec-head{padding:8px 28px 10px}
+  .cards{display:none}
+  .desktop-tbl-wrap{display:block;margin:0 28px;background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  thead tr{background:var(--bg)}
+  th{padding:11px 16px;text-align:left;font-size:10px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid var(--border)}
+  td{padding:13px 16px;border-bottom:1px solid var(--border);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:#FAFCFF}
+  .alerts-box{margin:10px 28px 0}
+  .hgrid-wrap{padding:0 28px}
+  .exp-summary{padding:16px 28px}
+  .exp-list{padding:0 28px}
+  .backup-section{padding:16px 28px}
+  .backup-card{max-width:480px}
+  .overlay{align-items:center;padding:20px}
+  .sheet{border-radius:20px;max-width:520px;margin:auto;max-height:90vh}
+  .toast{bottom:32px}
+  .nav-btns .nb-extra{display:flex}
+}
+@media(max-width:639px){
+  .desktop-tbl-wrap{display:none}
+  .nb-extra{display:none}
+}
+
+/* DIVIDER */
+.divider{height:1px;background:var(--border);margin:6px 16px 12px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-top">
+    <div class="logo">
+      <div class="logo-mark">🏢</div>
+      <div>
+        <div class="logo-text">RentBook <span style="color:var(--accent)">Pro</span></div>
+        <div class="logo-sub">Pune Property Manager</div>
+      </div>
+    </div>
+    <div class="nav-btns">
+      <button class="nav-btn nb-ghost nb-extra" onclick="exportCSV()">↓ Export</button>
+      <button class="nav-btn nb-wa nb-extra" onclick="openRemindAll()">📲 Remind All</button>
+      <button class="nav-btn nb-dark" onclick="openAddTenant()">+ Tenant</button>
+    </div>
+  </div>
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('tenants')"><span class="tab-icon">🏠</span>Tenants</div>
+    <div class="tab" onclick="showTab('history')"><span class="tab-icon">📅</span>History</div>
+    <div class="tab" onclick="showTab('expenses')"><span class="tab-icon">💰</span>Expenses</div>
+    <div class="tab" onclick="showTab('alerts')"><span class="tab-icon">🔔</span>Alerts</div>
+    <div class="tab" onclick="showTab('backup')"><span class="tab-icon">☁️</span>Backup</div>
+  </div>
+</nav>
+
+<!-- ═══════════ TAB: TENANTS ═══════════ -->
+<div id="tab-tenants" class="page active">
+  <div class="month-row" id="monthPills"></div>
+  <div class="stats">
+    <div class="scard sp"><div class="snum" id="sPaid">0</div><div class="slbl">Paid</div></div>
+    <div class="scard sn"><div class="snum" id="sPending">0</div><div class="slbl">Pending</div></div>
+    <div class="scard so"><div class="snum" id="sOverdue">0</div><div class="slbl">Overdue</div></div>
+    <div class="scard sm"><div class="snum" id="sMoney">₹0</div><div class="slbl">Collected</div></div>
+  </div>
+  <div class="sec-head">
+    <div class="sec-title" id="secTitle">Tenants</div>
+    <button class="nav-btn nb-ghost nb-extra" onclick="exportCSV()" style="font-size:11px;padding:5px 10px">↓ CSV</button>
+  </div>
+  <!-- Mobile cards -->
+  <div class="cards" id="mobileCards"></div>
+  <!-- Desktop table -->
+  <div class="desktop-tbl-wrap">
+    <table><thead><tr>
+      <th>Flat</th><th>Tenant</th><th>Phone</th><th>Rent ₹</th><th>Due</th><th>Lease Ends</th><th>Status</th><th>Actions</th>
+    </tr></thead><tbody id="desktopRows"></tbody></table>
+  </div>
+</div>
+
+<!-- ═══════════ TAB: HISTORY ═══════════ -->
+<div id="tab-history" class="page">
+  <div class="sec-head" style="padding-top:14px">
+    <div class="sec-title">12-Month Payment History</div>
+  </div>
+  <div class="hgrid-wrap"><div class="hgrid" id="historyGrid"></div></div>
+  <div style="padding:10px 16px;font-size:11px;color:var(--ink3);display:flex;gap:12px;flex-wrap:wrap">
+    <span><span class="hcell paid" style="display:inline-flex">✓</span> Paid on time</span>
+    <span><span class="hcell late" style="display:inline-flex">!</span> Late / overdue</span>
+    <span><span class="hcell miss" style="display:inline-flex">–</span> No record</span>
+  </div>
+</div>
+
+<!-- ═══════════ TAB: EXPENSES ═══════════ -->
+<div id="tab-expenses" class="page">
+  <div class="exp-summary">
+    <div class="exp-card income"><div class="exp-num" id="eIncome">₹0</div><div class="exp-lbl">Income</div></div>
+    <div class="exp-card expense"><div class="exp-num" id="eExpense">₹0</div><div class="exp-lbl">Expenses</div></div>
+    <div class="exp-card net"><div class="exp-num" id="eNet">₹0</div><div class="exp-lbl">Net</div></div>
+  </div>
+  <div class="sec-head">
+    <div class="sec-title" id="expSecTitle">This Month</div>
+    <div style="display:flex;gap:6px">
+      <select id="expMonthSel" onchange="renderExpenses()" style="background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:5px 10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:600;color:var(--ink2)"></select>
+    </div>
+  </div>
+  <div class="exp-list" id="expList"></div>
+</div>
+
+<!-- ═══════════ TAB: ALERTS ═══════════ -->
+<div id="tab-alerts" class="page">
+  <div class="sec-head" style="padding-top:14px">
+    <div class="sec-title">Lease & Payment Alerts</div>
+  </div>
+  <div id="alertsContent" style="padding:0 16px"></div>
+</div>
+
+<!-- ═══════════ TAB: BACKUP ═══════════ -->
+<div id="tab-backup" class="page">
+  <div class="backup-section">
+
+    <div class="backup-card">
+      <h3>☁️ Google Drive Backup</h3>
+      <div class="gdrive-status disconnected" id="gdriveStatus">Not connected — sign in below</div>
+      <p>Back up all your tenant data and payment records to your personal Google Drive. Your data stays private and only you can access it.</p>
+      <button class="backup-btn bb-blue" onclick="gdriveSignIn()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6.28 3h11.44L22 10.91 12 21 2 10.91z" opacity=".3"/><path d="M12 2L2 19h20L12 2zm0 3.99L19.53 19H4.47L12 5.99z"/></svg>
+        Sign in with Google
+      </button>
+      <button class="backup-btn bb-green" id="btnBackupNow" onclick="backupToGDrive()" style="display:none">
+        ☁️ Backup Now to Google Drive
+      </button>
+      <button class="backup-btn bb-ghost" id="btnRestoreGD" onclick="restoreFromGDrive()" style="display:none">
+        ↩ Restore from Google Drive
+      </button>
+      <div class="backup-info" id="lastBackupInfo">No backup found</div>
+    </div>
+
+    <div class="backup-card">
+      <h3>📥 Local Backup (JSON)</h3>
+      <p>Download all your data as a JSON file. Keep it in WhatsApp Saved Messages or Google Photos for safe keeping.</p>
+      <button class="backup-btn bb-green" onclick="downloadJSON()">⬇ Download Backup File</button>
+      <button class="backup-btn bb-ghost" onclick="document.getElementById('restoreFile').click()">↩ Restore from File</button>
+      <input type="file" id="restoreFile" accept=".json" style="display:none" onchange="restoreFromFile(event)">
+      <div class="backup-info">Save this file to WhatsApp Saved Messages or Google Drive manually</div>
+    </div>
+
+    <div class="backup-card">
+      <h3>📊 Export CSV</h3>
+      <p>Export current month's tenant & payment data as a spreadsheet for your CA or records.</p>
+      <button class="backup-btn bb-ghost" onclick="exportCSV()">⬇ Export as CSV (Excel)</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- BOTTOM BAR -->
+<div class="bottom-bar" id="bottomBar">
+  <button class="bfull wa" onclick="openRemindAll()">📲 Remind</button>
+  <button class="bfull add" onclick="openAddTenant()">+ Tenant</button>
+  <button class="bfull exp" onclick="openAddExpense()">+ Expense</button>
+</div>
+
+<!-- ═══ MODAL: ADD/EDIT TENANT ═══ -->
+<div class="overlay" id="modalTenant" style="display:none" onclick="if(event.target===this)closeModal('modalTenant')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-hdr">
+      <div class="sheet-title" id="tenantModalTitle">Add Tenant</div>
+      <button class="close-x" onclick="closeModal('modalTenant')">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div class="frow">
+        <div class="field"><label>Flat No.</label><input id="tf_flat" placeholder="A-101"/></div>
+        <div class="field"><label>Due Day</label><input id="tf_due" type="number" min="1" max="28" placeholder="1–28"/></div>
+      </div>
+      <div class="field"><label>Tenant Name</label><input id="tf_name" placeholder="Full name"/></div>
+      <div class="frow">
+        <div class="field"><label>WhatsApp No.</label><input id="tf_phone" placeholder="91XXXXXXXXXX" type="tel"/></div>
+        <div class="field"><label>Monthly Rent ₹</label><input id="tf_rent" type="number" placeholder="15000"/></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>Lease Start</label><input id="tf_lstart" type="date"/></div>
+        <div class="field"><label>Lease End</label><input id="tf_lend" type="date"/></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>Security Deposit ₹</label><input id="tf_deposit" type="number" placeholder="30000"/></div>
+        <div class="field"><label>Late Fee ₹/day</label><input id="tf_latefee" type="number" placeholder="50"/></div>
+      </div>
+      <div class="field"><label>Notes</label><input id="tf_notes" placeholder="Parking, water, maintenance included…"/></div>
+    </div>
+    <div class="sheet-foot">
+      <button class="btn" onclick="closeModal('modalTenant')">Cancel</button>
+      <button class="btn primary" onclick="saveTenant()">Save Tenant</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL: ADD EXPENSE ═══ -->
+<div class="overlay" id="modalExpense" style="display:none" onclick="if(event.target===this)closeModal('modalExpense')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-hdr">
+      <div class="sheet-title">Add Entry</div>
+      <button class="close-x" onclick="closeModal('modalExpense')">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div class="field">
+        <label>Type</label>
+        <select id="ef_type">
+          <option value="expense">Expense (Money Out)</option>
+          <option value="income">Other Income (Money In)</option>
+        </select>
+      </div>
+      <div class="field"><label>Category</label>
+        <select id="ef_cat">
+          <option>Maintenance / Repair</option>
+          <option>Plumbing</option>
+          <option>Electrician</option>
+          <option>Painting</option>
+          <option>Cleaning</option>
+          <option>Property Tax</option>
+          <option>Insurance</option>
+          <option>Society Charges</option>
+          <option>Other Income</option>
+          <option>Other Expense</option>
+        </select>
+      </div>
+      <div class="field"><label>Description</label><input id="ef_desc" placeholder="e.g. Fixed water pump, Flat A-101"/></div>
+      <div class="frow">
+        <div class="field"><label>Amount ₹</label><input id="ef_amt" type="number" placeholder="2500"/></div>
+        <div class="field"><label>Date</label><input id="ef_date" type="date"/></div>
+      </div>
+    </div>
+    <div class="sheet-foot">
+      <button class="btn" onclick="closeModal('modalExpense')">Cancel</button>
+      <button class="btn primary" onclick="saveExpense()">Save Entry</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL: RECEIPT ═══ -->
+<div class="overlay" id="modalReceipt" style="display:none" onclick="if(event.target===this)closeModal('modalReceipt')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-hdr">
+      <div class="sheet-title">🧾 Rent Receipt</div>
+      <button class="close-x" onclick="closeModal('modalReceipt')">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div class="receipt" id="receiptContent"></div>
+    </div>
+    <div class="sheet-foot">
+      <button class="btn" onclick="closeModal('modalReceipt')">Close</button>
+      <button class="btn wa-btn" onclick="sendReceiptWA()">📲 Send on WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODAL: REMIND ALL ═══ -->
+<div class="overlay" id="modalRemind" style="display:none" onclick="if(event.target===this)closeModal('modalRemind')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-hdr">
+      <div class="sheet-title">📲 Send Reminders</div>
+      <button class="close-x" onclick="closeModal('modalRemind')">✕</button>
+    </div>
+    <div class="sheet-body" id="remindBody"></div>
+    <div class="sheet-foot"><button class="btn primary" style="flex:1" onclick="closeModal('modalRemind')">Done</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const EXP_COLORS={income:'var(--green)',expense:'var(--red)'};
+let tenants=[], payments={}, expenses=[], currentMonth='', editingId=null, receiptTenant=null;
+let gapi_ready=false, gdriveToken=null;
+
+function load(){
+  try{tenants=JSON.parse(localStorage.getItem('rb3_tenants')||'[]')}catch(e){}
+  try{payments=JSON.parse(localStorage.getItem('rb3_payments')||'{}')}catch(e){}
+  try{expenses=JSON.parse(localStorage.getItem('rb3_expenses')||'[]')}catch(e){}
+}
+function persist(){
+  localStorage.setItem('rb3_tenants',JSON.stringify(tenants));
+  localStorage.setItem('rb3_payments',JSON.stringify(payments));
+  localStorage.setItem('rb3_expenses',JSON.stringify(expenses));
+}
+
+// ══════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════
+function init(){
+  load();
+  const now=new Date();
+  const pills=document.getElementById('monthPills');
+  const expSel=document.getElementById('expMonthSel');
+  for(let i=-5;i<=2;i++){
+    const d=new Date(now.getFullYear(),now.getMonth()+i,1);
+    const val=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+    const lbl=`${MONTHS[d.getMonth()].slice(0,3)} ${d.getFullYear()}`;
+    // month pill
+    const btn=document.createElement('button');
+    btn.className='mpill'+(i===0?' active':'');
+    btn.textContent=lbl; btn.dataset.val=val;
+    btn.onclick=()=>setMonth(val);
+    pills.appendChild(btn);
+    if(i===0)currentMonth=val;
+    // expense select
+    const opt=document.createElement('option');
+    opt.value=val; opt.textContent=lbl;
+    if(i===0)opt.selected=true;
+    expSel.appendChild(opt);
+  }
+  // default expense date
+  document.getElementById('ef_date').value=now.toISOString().slice(0,10);
+  renderAll();
+  checkGDriveToken();
+}
+
+function setMonth(val){
+  currentMonth=val;
+  document.querySelectorAll('.mpill').forEach(p=>p.classList.toggle('active',p.dataset.val===val));
+  renderTenants();
+}
+
+function showTab(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  const tabs=['tenants','history','expenses','alerts','backup'];
+  document.querySelectorAll('.tab')[tabs.indexOf(name)].classList.add('active');
+  // update bottom bar
+  const bb=document.getElementById('bottomBar');
+  if(name==='expenses'){
+    bb.innerHTML=`<button class="bfull add" onclick="openAddTenant()">+ Tenant</button><button class="bfull exp" onclick="openAddExpense()">+ Expense</button>`;
+  } else {
+    bb.innerHTML=`<button class="bfull wa" onclick="openRemindAll()">📲 Remind</button><button class="bfull add" onclick="openAddTenant()">+ Tenant</button><button class="bfull exp" onclick="openAddExpense()">+ Expense</button>`;
+  }
+  if(name==='history') renderHistory();
+  if(name==='expenses') renderExpenses();
+  if(name==='alerts') renderAlerts();
+}
+
+function renderAll(){ renderTenants(); }
+
+// ══════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════
+function ym(ym){const[y,m]=ym.split('-');return`${MONTHS[+m-1]} ${y}`}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function sorted(){return[...tenants].sort((a,b)=>a.flat.localeCompare(b.flat))}
+function today(){return new Date().toISOString().slice(0,10)}
+
+function getStatus(t){
+  const key=`${t.id}_${currentMonth}`;
+  if(payments[key]==='paid') return 'paid';
+  const[yr,mo]=currentMonth.split('-').map(Number);
+  const due=new Date(yr,mo-1,t.dueDate||1);
+  const now=new Date();
+  const curM=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+  if(now>due&&currentMonth<=curM) return 'overdue';
+  return 'pending';
+}
+
+function leaseStatus(t){
+  if(!t.leaseEnd) return null;
+  const end=new Date(t.leaseEnd);
+  const now=new Date();
+  const days=Math.ceil((end-now)/86400000);
+  if(days<0) return{label:'Expired',days:Math.abs(days),cls:'warn'};
+  if(days<=30) return{label:`Expiring in ${days}d`,days,cls:'warn'};
+  if(days<=60) return{label:`Expiring in ${days}d`,days,cls:'soon'};
+  return{label:`${days}d left`,days,cls:'ok'};
+}
+
+let toastT;
+function showToast(msg){
+  clearTimeout(toastT);
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  toastT=setTimeout(()=>t.classList.remove('show'),2600);
+}
+
+// ══════════════════════════════════════
+//  TENANTS RENDER
+// ══════════════════════════════════════
+function renderTenants(){
+  const s=sorted();
+  const now=new Date();
+  const[yr,mo]=currentMonth.split('-').map(Number);
+  document.getElementById('secTitle').textContent=`Tenants — ${ym(currentMonth)}`;
+
+  let paid=0,pending=0,overdue=0,money=0;
+  s.forEach(t=>{
+    const st=getStatus(t);
+    if(st==='paid'){paid++;money+=+t.rent;}
+    else if(st==='overdue') overdue++;
+    else pending++;
+  });
+  document.getElementById('sPaid').textContent=paid;
+  document.getElementById('sPending').textContent=pending;
+  document.getElementById('sOverdue').textContent=overdue;
+  document.getElementById('sMoney').textContent='₹'+money.toLocaleString('en-IN');
+
+  if(!s.length){
+    const e=`<div class="empty"><span class="ei">🏠</span><h3>No tenants yet</h3><p>Tap <strong>+ Tenant</strong> to get started.</p></div>`;
+    document.getElementById('mobileCards').innerHTML=e;
+    document.getElementById('desktopRows').innerHTML=`<tr><td colspan="8">${e}</td></tr>`;
+    return;
+  }
+
+  // mobile cards
+  document.getElementById('mobileCards').innerHTML=s.map(t=>{
+    const st=getStatus(t);
+    const ls=leaseStatus(t);
+    const dueDay=t.dueDate||1;
+    const dueDate=new Date(yr,mo-1,dueDay);
+    const daysLeft=Math.ceil((dueDate-now)/86400000);
+    const dueCls=st!=='paid'?(daysLeft<0?'warn':daysLeft<=3?'soon':''):'';
+    const sIcon=st==='paid'?'✓ Paid':st==='overdue'?'⚠ Overdue':'⏳ Pending';
+    return`<div class="tcard">
+      <div class="tc-r1">
+        <div>
+          <span class="tc-flat">${esc(t.flat)}</span>
+          <div class="tc-name">${esc(t.name)}</div>
+          ${t.notes?`<div class="tc-note">${esc(t.notes)}</div>`:''}
+        </div>
+        <div><div class="tc-rent">₹${(+t.rent).toLocaleString('en-IN')}</div><div class="tc-rlbl">per month</div></div>
+      </div>
+      <div class="tc-r2">
+        <span class="chip">📞 ${esc(t.phone)}</span>
+        <span class="chip-sep"></span>
+        <span class="chip ${dueCls}">Due ${String(dueDay).padStart(2,'0')} ${MONTHS[mo-1].slice(0,3)}</span>
+        ${ls?`<span class="chip-sep"></span><span class="chip ${ls.cls}">📋 ${ls.label}</span>`:''}
+      </div>
+      <div class="tc-r3">
+        <button class="sbadge ${st}" onclick="togglePaid('${t.id}')">${sIcon}</button>
+        <div class="tc-btns">
+          <button class="ibtn" title="View Receipt" onclick="showReceipt('${t.id}')">🧾</button>
+          <button class="ibtn wa" title="WhatsApp" onclick="sendWA('${t.id}')">📲</button>
+          <button class="ibtn" title="Edit" onclick="openEditTenant('${t.id}')">✏️</button>
+          <button class="ibtn del" title="Delete" onclick="delTenant('${t.id}')">🗑</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // desktop rows
+  document.getElementById('desktopRows').innerHTML=s.map(t=>{
+    const st=getStatus(t);
+    const ls=leaseStatus(t);
+    const dueDay=t.dueDate||1;
+    const dueDate=new Date(yr,mo-1,dueDay);
+    const daysLeft=Math.ceil((dueDate-now)/86400000);
+    const dueCls=st!=='paid'?(daysLeft<0?'warn':daysLeft<=3?'soon':''):'';
+    const sIcon=st==='paid'?'✓ Paid':st==='overdue'?'⚠ Overdue':'⏳ Pending';
+    const leaseCell=t.leaseEnd
+      ?`<span style="font-size:12px" class="${ls?ls.cls:''}">${t.leaseEnd}${ls?` <small>(${ls.label})</small>`:''}</span>`
+      :'<span style="color:var(--ink3);font-size:12px">—</span>';
+    return`<tr>
+      <td><span class="tc-flat">${esc(t.flat)}</span></td>
+      <td><div style="font-weight:700">${esc(t.name)}</div>${t.notes?`<div style="font-size:11px;color:var(--ink3)">${esc(t.notes)}</div>`:''}</td>
+      <td style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink2)">${esc(t.phone)}</td>
+      <td style="font-family:'JetBrains Mono',monospace;font-weight:600">₹${(+t.rent).toLocaleString('en-IN')}</td>
+      <td class="${dueCls}" style="font-size:13px">${String(dueDay).padStart(2,'0')} ${MONTHS[mo-1].slice(0,3)}</td>
+      <td>${leaseCell}</td>
+      <td><button class="sbadge ${st}" onclick="togglePaid('${t.id}')">${sIcon}</button></td>
+      <td><div style="display:flex;gap:5px">
+        <button class="ibtn" title="Receipt" onclick="showReceipt('${t.id}')">🧾</button>
+        <button class="ibtn wa" title="WhatsApp" onclick="sendWA('${t.id}')">📲</button>
+        <button class="ibtn" title="Edit" onclick="openEditTenant('${t.id}')">✏️</button>
+        <button class="ibtn del" title="Delete" onclick="delTenant('${t.id}')">🗑</button>
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════
+//  PAYMENT ACTIONS
+// ══════════════════════════════════════
+function togglePaid(id){
+  const key=`${id}_${currentMonth}`;
+  if(payments[key]==='paid') delete payments[key];
+  else payments[key]='paid';
+  persist(); renderTenants();
+  showToast(payments[key]==='paid'?'✓ Marked as paid':'Marked as pending');
+}
+
+function sendWA(id){
+  const t=tenants.find(x=>x.id===id); if(!t) return;
+  const st=getStatus(t);
+  const ml=ym(currentMonth);
+  const[yr,mo]=currentMonth.split('-').map(Number);
+  const daysLate=st==='overdue'?Math.ceil((new Date()-new Date(yr,mo-1,t.dueDate||1))/86400000):0;
+  const lateFee=daysLate>0&&t.lateFee?`\n⚠ Late fee applicable: ₹${(daysLate*(+t.lateFee)).toLocaleString('en-IN')} (₹${t.lateFee}/day × ${daysLate} days)`:'';
+  let msg;
+  if(st==='overdue'){
+    msg=`🔴 *Rent Overdue — ${ml}*\n\nDear ${t.name},\n\nYour rent of *₹${(+t.rent).toLocaleString('en-IN')}* for flat *${t.flat}* is OVERDUE for ${ml}.${lateFee}\n\nKindly arrange payment immediately to avoid further charges.\n\nThank you.\n– Property Manager`;
+  } else {
+    msg=`🏠 *Rent Reminder — ${ml}*\n\nDear ${t.name},\n\nThis is a friendly reminder that your rent of *₹${(+t.rent).toLocaleString('en-IN')}* for flat *${t.flat}* is due by *${t.dueDate} ${ml}*.\n\nPlease pay on time to avoid late fees.\n\nThank you.\n– Property Manager`;
+  }
+  window.open(`https://wa.me/${t.phone.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+// ══════════════════════════════════════
+//  RECEIPT
+// ══════════════════════════════════════
+function showReceipt(id){
+  const t=tenants.find(x=>x.id===id); if(!t) return;
+  receiptTenant=t;
+  const st=getStatus(t);
+  const ml=ym(currentMonth);
+  const rcptNo=`RCT-${currentMonth}-${t.flat.replace(/[^A-Z0-9]/gi,'')}`.toUpperCase();
+  const paidDate=st==='paid'?(payments[`${t.id}_${currentMonth}`+'_date']||today()):today();
+  document.getElementById('receiptContent').innerHTML=`
+    <div class="receipt-hdr">
+      <div class="rtitle">🏢 RENT RECEIPT</div>
+      <div class="rsub">Receipt No: ${rcptNo}</div>
+    </div>
+    <div class="receipt-row"><span class="rlbl">Tenant Name</span><span class="rval">${esc(t.name)}</span></div>
+    <div class="receipt-row"><span class="rlbl">Flat No.</span><span class="rval">${esc(t.flat)}</span></div>
+    <div class="receipt-row"><span class="rlbl">Period</span><span class="rval">${ml}</span></div>
+    <div class="receipt-row"><span class="rlbl">Rent Amount</span><span class="rval">₹${(+t.rent).toLocaleString('en-IN')}</span></div>
+    ${t.deposit?`<div class="receipt-row"><span class="rlbl">Security Deposit</span><span class="rval">₹${(+t.deposit).toLocaleString('en-IN')}</span></div>`:''}
+    <div class="receipt-row"><span class="rlbl">Payment Status</span><span class="rval" style="color:${st==='paid'?'var(--green)':'var(--red)'}">${st.toUpperCase()}</span></div>
+    <div class="receipt-row"><span class="rlbl">Date</span><span class="rval">${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'long',year:'numeric'})}</span></div>
+    <div class="receipt-foot">This is a computer-generated receipt. No signature required.<br>Pune, Maharashtra</div>`;
+  document.getElementById('modalReceipt').style.display='flex';
+}
+
+function sendReceiptWA(){
+  const t=receiptTenant; if(!t) return;
+  const st=getStatus(t);
+  const ml=ym(currentMonth);
+  const rcptNo=`RCT-${currentMonth}-${t.flat.replace(/[^A-Z0-9]/gi,'')}`.toUpperCase();
+  const msg=`🧾 *RENT RECEIPT*\nReceipt No: ${rcptNo}\n\nDear ${t.name},\n\nThis confirms receipt of your rent payment:\n\n🏠 Flat: *${t.flat}*\n📅 Period: *${ml}*\n💰 Amount: *₹${(+t.rent).toLocaleString('en-IN')}*\n✅ Status: *${st.toUpperCase()}*\n📆 Date: *${new Date().toLocaleDateString('en-IN')}*\n\nThank you for your payment!\n– Property Manager, Pune`;
+  window.open(`https://wa.me/${t.phone.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`,'_blank');
+  closeModal('modalReceipt');
+}
+
+// ══════════════════════════════════════
+//  REMIND ALL
+// ══════════════════════════════════════
+function openRemindAll(){
+  const pending=sorted().filter(t=>getStatus(t)!=='paid');
+  const body=document.getElementById('remindBody');
+  if(!pending.length){
+    body.innerHTML=`<div style="text-align:center;padding:32px;color:var(--green)"><div style="font-size:36px;margin-bottom:8px">🎉</div><strong>All tenants paid for ${ym(currentMonth)}!</strong></div>`;
+  } else {
+    body.innerHTML=`<p style="font-size:13px;color:var(--ink3);margin-bottom:12px">${pending.length} pending/overdue for ${ym(currentMonth)}</p>`
+      +pending.map(t=>{
+        const st=getStatus(t);
+        return`<div class="rcard">
+          <div><strong>${esc(t.flat)} — ${esc(t.name)}</strong><span>₹${(+t.rent).toLocaleString('en-IN')} · Due ${t.dueDate} · <span class="sbadge ${st}" style="padding:3px 8px;font-size:10px;cursor:default">${st}</span></span></div>
+          <button class="wa-sm" onclick="sendWA('${t.id}')">📲 Send</button>
+        </div>`;
+      }).join('');
+  }
+  document.getElementById('modalRemind').style.display='flex';
+}
+
+// ══════════════════════════════════════
+//  HISTORY
+// ══════════════════════════════════════
+function renderHistory(){
+  const now=new Date();
+  const months=[];
+  for(let i=11;i>=0;i--){
+    const d=new Date(now.getFullYear(),now.getMonth()-i,1);
+    months.push(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`);
+  }
+  const s=sorted();
+  if(!s.length){
+    document.getElementById('historyGrid').innerHTML=`<div class="empty" style="padding:40px"><span class="ei">📅</span><h3>No tenants yet</h3></div>`;
+    return;
+  }
+  let html=`<table><thead><tr><th class="left">Tenant</th>${months.map(m=>`<th>${MONTHS[+m.split('-')[1]-1].slice(0,3)}<br>${m.split('-')[0]}</th>`).join('')}<th>Score</th></tr></thead><tbody>`;
+  s.forEach(t=>{
+    let paid=0;
+    const cells=months.map(m=>{
+      const key=`${t.id}_${m}`;
+      const isPaid=payments[key]==='paid';
+      if(isPaid) paid++;
+      const mDate=new Date(+m.split('-')[0],+m.split('-')[1]-1,1);
+      const isFuture=mDate>now;
+      if(isFuture) return`<td><span class="hcell future">·</span></td>`;
+      return isPaid?`<td><span class="hcell paid">✓</span></td>`:`<td><span class="hcell late">!</span></td>`;
+    }).join('');
+    const score=Math.round((paid/months.filter(m=>new Date(+m.split('-')[0],+m.split('-')[1]-1,1)<=now).length)*100);
+    html+=`<tr><td class="left">${esc(t.flat)} ${esc(t.name)}</td>${cells}<td><strong style="color:${score>=90?'var(--green)':score>=70?'var(--yellow)':'var(--red)'}">${score}%</strong></td></tr>`;
+  });
+  html+=`</tbody></table>`;
+  document.getElementById('historyGrid').innerHTML=html;
+}
+
+// ══════════════════════════════════════
+//  EXPENSES
+// ══════════════════════════════════════
+function renderExpenses(){
+  const selMonth=document.getElementById('expMonthSel').value;
+  document.getElementById('expSecTitle').textContent=ym(selMonth);
+  const filtered=expenses.filter(e=>e.date.startsWith(selMonth));
+
+  // Income from rent
+  const rentIncome=sorted().filter(t=>getStatus2(t,selMonth)==='paid').reduce((a,t)=>a+(+t.rent),0);
+  const otherIncome=filtered.filter(e=>e.type==='income').reduce((a,e)=>a+(+e.amount),0);
+  const totalExp=filtered.filter(e=>e.type==='expense').reduce((a,e)=>a+(+e.amount),0);
+  const totalIncome=rentIncome+otherIncome;
+  const net=totalIncome-totalExp;
+
+  document.getElementById('eIncome').textContent='₹'+totalIncome.toLocaleString('en-IN');
+  document.getElementById('eExpense').textContent='₹'+totalExp.toLocaleString('en-IN');
+  document.getElementById('eNet').textContent=(net>=0?'':'−')+'₹'+Math.abs(net).toLocaleString('en-IN');
+  document.getElementById('eNet').style.color=net>=0?'var(--green)':'var(--red)';
+
+  const list=document.getElementById('expList');
+  if(!filtered.length&&!rentIncome){
+    list.innerHTML=`<div class="empty"><span class="ei">💰</span><h3>No entries for ${ym(selMonth)}</h3><p>Tap <strong>+ Expense</strong> to add a maintenance cost or other income.</p></div>`;
+    return;
+  }
+  // Combine rent entries + manual expenses
+  const rows=[];
+  sorted().filter(t=>getStatus2(t,selMonth)==='paid').forEach(t=>{
+    rows.push({type:'income',cat:'Rent Collected',desc:`${t.flat} — ${t.name}`,amount:t.rent,date:selMonth+'-'+String(t.dueDate||1).padStart(2,'0'),id:null});
+  });
+  filtered.forEach(e=>rows.push(e));
+  rows.sort((a,b)=>b.date.localeCompare(a.date));
+
+  list.innerHTML=rows.map(e=>`<div class="exp-item">
+    <div class="exp-left">
+      <div class="exp-cat">${esc(e.cat||e.category||'')}</div>
+      <div class="exp-desc">${esc(e.desc||e.description||'')}</div>
+      <div class="exp-date">${e.date}</div>
+    </div>
+    <div class="exp-right">
+      <div class="exp-amount ${e.type}">${e.type==='income'?'+':'-'}₹${(+e.amount).toLocaleString('en-IN')}</div>
+      ${e.id?`<button class="exp-del" onclick="delExpense('${e.id}')">🗑</button>`:'<div style="height:26px"></div>'}
+    </div>
+  </div>`).join('');
+}
+
+function getStatus2(t,month){
+  const key=`${t.id}_${month}`;
+  if(payments[key]==='paid') return 'paid';
+  return 'other';
+}
+
+function openAddExpense(){
+  document.getElementById('ef_date').value=today();
+  document.getElementById('modalExpense').style.display='flex';
+}
+
+function saveExpense(){
+  const type=document.getElementById('ef_type').value;
+  const cat=document.getElementById('ef_cat').value;
+  const desc=document.getElementById('ef_desc').value.trim();
+  const amt=document.getElementById('ef_amt').value.trim();
+  const date=document.getElementById('ef_date').value;
+  if(!desc||!amt||!date){showToast('Fill all fields');return;}
+  expenses.push({id:'E'+Date.now(),type,cat,desc,amount:+amt,date});
+  persist(); closeModal('modalExpense');
+  document.getElementById('ef_desc').value='';
+  document.getElementById('ef_amt').value='';
+  showToast(type==='income'?'Income added ✓':'Expense added ✓');
+  // switch to expenses tab
+  showTab('expenses');
+  document.getElementById('expMonthSel').value=date.slice(0,7);
+  renderExpenses();
+}
+
+function delExpense(id){
+  if(!confirm('Delete this entry?')) return;
+  expenses=expenses.filter(e=>e.id!==id);
+  persist(); renderExpenses(); showToast('Entry deleted');
+}
+
+// ══════════════════════════════════════
+//  ALERTS
+// ══════════════════════════════════════
+function renderAlerts(){
+  const now=new Date();
+  const alerts=[];
+
+  sorted().forEach(t=>{
+    // Lease alerts
+    if(t.leaseEnd){
+      const end=new Date(t.leaseEnd);
+      const days=Math.ceil((end-now)/86400000);
+      if(days<0){
+        alerts.push({cls:'alert-red',icon:'🔴',title:`${t.flat} — ${t.name}`,desc:`Lease EXPIRED ${Math.abs(days)} days ago (${t.leaseEnd}). Renew immediately.`,priority:0});
+      } else if(days<=30){
+        alerts.push({cls:'alert-red',icon:'⚠️',title:`${t.flat} — ${t.name}`,desc:`Lease expiring in ${days} days (${t.leaseEnd}). Start renewal process.`,priority:1});
+      } else if(days<=60){
+        alerts.push({cls:'alert-orange',icon:'📋',title:`${t.flat} — ${t.name}`,desc:`Lease expiring in ${days} days (${t.leaseEnd}). Plan ahead.`,priority:2});
+      }
+    }
+    // Overdue rent
+    const st=getStatus(t);
+    if(st==='overdue'){
+      const[yr,mo]=currentMonth.split('-').map(Number);
+      const daysLate=Math.ceil((now-new Date(yr,mo-1,t.dueDate||1))/86400000);
+      const fee=t.lateFee?` Late fee: ₹${(daysLate*(+t.lateFee)).toLocaleString('en-IN')}`:' ';
+      alerts.push({cls:'alert-red',icon:'💸',title:`${t.flat} — ${t.name}`,desc:`Rent overdue by ${daysLate} days for ${ym(currentMonth)}.${fee}`,priority:0});
+    }
+  });
+
+  if(!alerts.length){
+    document.getElementById('alertsContent').innerHTML=`<div class="empty"><span class="ei">✅</span><h3>All clear!</h3><p>No lease expiry or overdue rent alerts right now.</p></div>`;
+    return;
+  }
+  alerts.sort((a,b)=>a.priority-b.priority);
+  document.getElementById('alertsContent').innerHTML=`<div class="alerts-box">`+alerts.map(a=>`<div class="alert-item ${a.cls}"><div class="alert-icon">${a.icon}</div><div class="alert-txt"><strong>${esc(a.title)}</strong><span>${esc(a.desc)}</span></div></div>`).join('')+`</div>`;
+}
+
+// ══════════════════════════════════════
+//  ADD / EDIT TENANT
+// ══════════════════════════════════════
+function openAddTenant(){
+  editingId=null;
+  document.getElementById('tenantModalTitle').textContent='Add Tenant';
+  ['tf_flat','tf_name','tf_phone','tf_rent','tf_notes','tf_deposit','tf_latefee'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('tf_due').value='1';
+  document.getElementById('tf_lstart').value='';
+  document.getElementById('tf_lend').value='';
+  document.getElementById('modalTenant').style.display='flex';
+}
+
+function openEditTenant(id){
+  const t=tenants.find(x=>x.id===id); if(!t) return;
+  editingId=id;
+  document.getElementById('tenantModalTitle').textContent='Edit Tenant';
+  document.getElementById('tf_flat').value=t.flat;
+  document.getElementById('tf_name').value=t.name;
+  document.getElementById('tf_phone').value=t.phone;
+  document.getElementById('tf_rent').value=t.rent;
+  document.getElementById('tf_due').value=t.dueDate;
+  document.getElementById('tf_lstart').value=t.leaseStart||'';
+  document.getElementById('tf_lend').value=t.leaseEnd||'';
+  document.getElementById('tf_deposit').value=t.deposit||'';
+  document.getElementById('tf_latefee').value=t.lateFee||'';
+  document.getElementById('tf_notes').value=t.notes||'';
+  document.getElementById('modalTenant').style.display='flex';
+}
+
+function saveTenant(){
+  const flat=document.getElementById('tf_flat').value.trim();
+  const name=document.getElementById('tf_name').value.trim();
+  const phone=document.getElementById('tf_phone').value.trim();
+  const rent=document.getElementById('tf_rent').value.trim();
+  const due=document.getElementById('tf_due').value.trim();
+  if(!flat||!name||!phone||!rent||!due){showToast('Fill required fields');return;}
+  const data={flat,name,phone,rent:+rent,dueDate:+due,leaseStart:document.getElementById('tf_lstart').value,leaseEnd:document.getElementById('tf_lend').value,deposit:document.getElementById('tf_deposit').value,lateFee:document.getElementById('tf_latefee').value,notes:document.getElementById('tf_notes').value.trim()};
+  if(editingId){
+    const idx=tenants.findIndex(x=>x.id===editingId);
+    if(idx>=0) tenants[idx]={...tenants[idx],...data};
+    showToast('Tenant updated ✓');
+  } else {
+    tenants.push({id:'T'+Date.now(),...data});
+    showToast('Tenant added ✓');
+  }
+  persist(); closeModal('modalTenant'); renderTenants();
+}
+
+function delTenant(id){
+  const t=tenants.find(x=>x.id===id);
+  if(!confirm(`Remove ${t?.name} (${t?.flat})?`)) return;
+  tenants=tenants.filter(x=>x.id!==id);
+  Object.keys(payments).forEach(k=>{if(k.startsWith(id+'_')) delete payments[k];});
+  persist(); renderTenants(); showToast('Tenant removed');
+}
+
+// ══════════════════════════════════════
+//  BACKUP — LOCAL JSON
+// ══════════════════════════════════════
+function downloadJSON(){
+  const data={version:3,exported:new Date().toISOString(),tenants,payments,expenses};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`rentbook-backup-${today()}.json`;
+  a.click();
+  showToast('Backup downloaded ✓');
+}
+
+function restoreFromFile(e){
+  const file=e.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{
+      const data=JSON.parse(ev.target.result);
+      if(!data.tenants) throw new Error('Invalid file');
+      if(!confirm(`Restore ${data.tenants.length} tenants from backup dated ${data.exported?.slice(0,10)}? This will replace current data.`)) return;
+      tenants=data.tenants||[];
+      payments=data.payments||{};
+      expenses=data.expenses||[];
+      persist(); renderTenants();
+      showToast('Restored successfully ✓');
+    }catch(err){ showToast('Invalid backup file'); }
+  };
+  reader.readAsText(file);
+  e.target.value='';
+}
+
+// ══════════════════════════════════════
+//  BACKUP — GOOGLE DRIVE (via GIS)
+// ══════════════════════════════════════
+const GD_FILENAME='rentbook-pro-backup.json';
+const CLIENT_ID='';  // ← (see note below)
+
+function checkGDriveToken(){
+  const saved=localStorage.getItem('rb3_gdtoken');
+  if(saved){
+    gdriveToken=saved;
+    updateGDriveUI(true);
+  }
+}
+
+function gdriveSignIn(){
+  // Opens Google OAuth flow using GIS
+  // Since we can't embed a real CLIENT_ID here (it must be registered),
+  // we show the user instructions and fall back to the manual JSON method.
+  const info=`To enable Google Drive backup:\n\n1. Go to console.cloud.google.com\n2. Create a project → Enable Google Drive API\n3. Create OAuth 2.0 credentials (Web App)\n4. Add this file's URL as authorised origin\n5. Paste the Client ID in the app code\n\nFor now, use the "Download Backup File" option and save it to Google Drive manually — it's just as safe!`;
+  alert(info);
+  // If CLIENT_ID were set, we would call:
+  // google.accounts.oauth2.initTokenClient({client_id:CLIENT_ID,...}).requestAccessToken()
+}
+
+function updateGDriveUI(connected){
+  const status=document.getElementById('gdriveStatus');
+  const btnNow=document.getElementById('btnBackupNow');
+  const btnRest=document.getElementById('btnRestoreGD');
+  if(connected){
+    status.className='gdrive-status connected';
+    status.textContent='✓ Connected to Google Drive';
+    btnNow.style.display='flex';
+    btnRest.style.display='flex';
+  } else {
+    status.className='gdrive-status disconnected';
+    status.textContent='Not connected — sign in below';
+    btnNow.style.display='none';
+    btnRest.style.display='none';
+  }
+}
+
+async function backupToGDrive(){
+  if(!gdriveToken){showToast('Not signed in to Google Drive');return;}
+  const data=JSON.stringify({version:3,exported:new Date().toISOString(),tenants,payments,expenses});
+  try{
+    // Search for existing file
+    const search=await fetch(`https://www.googleapis.com/drive/v3/files?q=name='${GD_FILENAME}'+and+trashed=false&fields=files(id)`,{headers:{Authorization:`Bearer ${gdriveToken}`}});
+    const sRes=await search.json();
+    let fileId=sRes.files?.[0]?.id;
+    const meta={name:GD_FILENAME,mimeType:'application/json'};
+    const body=new FormData();
+    body.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));
+    body.append('file',new Blob([data],{type:'application/json'}));
+    const url=fileId
+      ?`https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=multipart`
+      :`https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart`;
+    const method=fileId?'PATCH':'POST';
+    const res=await fetch(url,{method,headers:{Authorization:`Bearer ${gdriveToken}`},body});
+    if(res.ok){
+      localStorage.setItem('rb3_lastbackup',new Date().toISOString());
+      document.getElementById('lastBackupInfo').textContent=`Last backup: ${new Date().toLocaleString('en-IN')}`;
+      showToast('☁️ Backed up to Google Drive ✓');
+    } else throw new Error('Upload failed');
+  }catch(err){showToast('Backup failed — check connection');}
+}
+
+async function restoreFromGDrive(){
+  if(!gdriveToken){showToast('Not signed in');return;}
+  try{
+    const search=await fetch(`https://www.googleapis.com/drive/v3/files?q=name='${GD_FILENAME}'+and+trashed=false&fields=files(id,modifiedTime)`,{headers:{Authorization:`Bearer ${gdriveToken}`}});
+    const sRes=await search.json();
+    if(!sRes.files?.length){showToast('No backup found on Drive');return;}
+    const fileId=sRes.files[0].id;
+    const res=await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`,{headers:{Authorization:`Bearer ${gdriveToken}`}});
+    const data=await res.json();
+    if(!confirm(`Restore backup from ${data.exported?.slice(0,10)}? (${data.tenants?.length} tenants)`)) return;
+    tenants=data.tenants||[]; payments=data.payments||{}; expenses=data.expenses||[];
+    persist(); renderTenants();
+    showToast('Restored from Google Drive ✓');
+  }catch(err){showToast('Restore failed — try JSON backup');}
+}
+
+// ══════════════════════════════════════
+//  EXPORT CSV
+// ══════════════════════════════════════
+function exportCSV(){
+  const rows=[['Flat','Name','Phone','Rent','Due Day','Lease Start','Lease End','Status','Month']];
+  sorted().forEach(t=>{
+    rows.push([t.flat,t.name,t.phone,t.rent,t.dueDate,t.leaseStart||'',t.leaseEnd||'',getStatus(t),currentMonth]);
+  });
+  const csv=rows.map(r=>r.map(v=>`"${v}"`).join(',')).join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download=`rentbook-${currentMonth}.csv`;
+  a.click();
+  showToast('CSV downloaded ✓');
+}
+
+// ══════════════════════════════════════
+//  MISC
+// ══════════════════════════════════════
+function closeModal(id){ document.getElementById(id).style.display='none'; }
+
+init();
+</script>
+</body>
+</html>
